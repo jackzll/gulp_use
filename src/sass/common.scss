@@ -1,0 +1,71 @@
+@import '_variable';
+body,ul,ol,li,p,h1,h2,h3,h4,h5 {
+    margin: 0;
+    padding: 0;
+}
+button,input,select,textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: 100%
+}
+
+img {
+    border: 0
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+html.touchevents a:hover {
+    text-decoration: none
+}
+
+body{
+    height:100vh;
+	background:$base-color;
+}
+%border-red{
+  border:red solid 1px;  
+}
+.flex{
+    margin-top:60px;
+    display:flex;
+    height:80px;
+    // flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    // flex-wrap:wrap;
+    // flex-direction属性和flex-wrap属性的简写形式
+    flex-flow:row wrap;
+    box-sizing:border-box;
+    @extend %border-red;
+    >li{
+        box-sizing:border-box;
+        width:100px;
+        height:30px;
+        background:#ececec;
+        list-style:none;
+        border:#999 solid 1px;
+        text-align:center;
+        flex:1;
+        &:first-child{
+            flex-basis:30%;
+        }
+
+    }
+}
+.border{
+    width:200px;
+    height:1px;
+    margin:50px auto;
+    background:red;
+    // background: linear-gradient(0deg, #fff, #000);
+    // box-shadow: 0 0.5px 0 #000;
+    // transform: scale(0.5);
+    // transform-origin: 50% 100%;
+}
