@@ -69,3 +69,35 @@ body{
     // transform: scale(0.5);
     // transform-origin: 50% 100%;
 }
+%clearfix{
+    &:after{
+        content:"";
+        display:block;
+        clear:both;
+    }
+}
+.float{
+    // @extend %clearfix;
+    display:table;
+  >div{
+    float:left;
+      border: #999 solid 1px;
+  }
+  >p{
+    // clear:both;
+  }
+}
+.bfc{
+    .left{
+        float:left;
+        background:#333;
+    }
+    .right{
+        float:right;
+        background:#666;
+    }
+    .center{
+        overflow:auto;
+        background:#999;
+    }
+}
