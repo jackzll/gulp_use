@@ -18,14 +18,23 @@ var path = require('path');
 var rename = require('gulp-rename');
 var pump = require('pump');
 var gulpSequence = require('gulp-sequence');
-//编译sass
-// {outputStyle: 'compressed'}
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+var postPlus = [
+  autoprefixer({
+    browsers: ['> 0.5%', 'last 2 versions']
+  }),
+  require('postcss-write-svg')({
+    utf8: false
+  }) //1px svg;
+]
 
 gulp.task('sass', function() {
   return gulp.src('./src/sass/**/*.scss')
     .pipe(sass({
       outputStyle: 'compressed'
     }).on('error', sass.logError))
+    .pipe(postcss(postPlus))
     .pipe(gulp.dest('./src/css'))
     .pipe(rename({
       suffix: '.min'
@@ -43,7 +52,10 @@ gulp.task('dev:js', (cb) => {
       rename({
         suffix: '.min'
       }),
-      gulp.dest('src')
+      gulp.dest('src'),
+      reload({
+        stream: true
+      })
     ],
     cb
   );
@@ -61,7 +73,7 @@ gulp.task('dev:server', ['sass'], function() {
     open: "local",
   });
   gulp.watch("./src/**/*.scss", ['sass']);
-  gulp.watch("src/js/**/*.js", ['js']);
+  gulp.watch("src/js/**/*.js", ['dev:js']).on('change', reload);
   gulp.watch("./src/*.html").on('change', reload);
 })
 
@@ -107,7 +119,6 @@ gulp.task('img:hash', function() {
     .pipe(gulp.dest('dist/images'))
     .pipe(rev.manifest())
     .pipe(gulp.dest('./rev/images'))
-
 })
 // // 图片压缩
 // gulp.task('minimg', function() {
@@ -124,5 +135,5 @@ gulp.task('rev', function() {
 })
 // 静态资源添加指纹
 gulp.task('build', function(cb) {
-  gulpSequence(['clean', 'clean:rev'], 'img:hash', 'build:js', 'copy:css', 'copy:html', 'rev', )(cb)
+  gulpSequence(['clean', 'clean:rev'], 'img:hash', 'build:js', 'copy:css', 'copy:html', 'rev')(cb)
 })

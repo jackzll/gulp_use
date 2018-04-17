@@ -11,11 +11,20 @@
     <meta name="keywords" content="">
     <link href="" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="https://static.zhihu.com/static/favicon.ico">
-    <link href="./css/common.min.css" type="text/css" rel="stylesheet">
     <script>
-	    var scale = 1 / window.devicePixelRatio; 
-	    document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+        (function(win,doc){
+                var dpr=window.devicePixelRatio||1;
+                var scale=dpr>=2?0.5:1; 
+                document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+                function setFontSize(){
+                    var size=(window.innerWidth||doc.documentElement.clientWidth)/750;
+                    doc.documentElement.style.fontSize=100*size+'px';
+                }
+                window.addeventListener('resize',setFontSize)
+        })(window,document)
+       
     </script>
+    <link href="./css/common.min.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +46,6 @@
         <li></li>
         <li></li>
     </ul>
-    <img src="./images/fontend&backend.jpg"/>
     <div class="border"></div>
     <div class="float">
         <div>box1</div>
@@ -49,6 +57,7 @@
         <div class="right">rightrightrightrightright</div>
         <div class="center">center</div>
     </div>
+    <div class="id"></div>
     <script src="./js/index.min.js"></script>
 </body>
 

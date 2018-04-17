@@ -1,14 +1,13 @@
-@import '_px2rem';
-$base:750/100;
+// //拼接多值
 @function Mosaic($b) {
     $v:"";
     @each $va in $b{
       @if (type-of($va)=='number'){
                   @if unit($va)=='px'{
-                    $v:$v+" "+unquote(($va/1px)/$base+'vw');
+                    $v:$v+" "+unquote(($va/1px)/16+'rem');
                   }
                   @else if(unitless($va)){
-                    $v:$v+" "+unquote(($va/$base)+'vw');
+                    $v:$v+" "+unquote(($va/16)+'rem');
                   }
                   @else if(unit($va)=='em'){
                       $v:$v+" "+$va;
@@ -20,7 +19,7 @@ $base:750/100;
     @return unquote($v);
 }
 
-@mixin px2vw($props){
+@mixin px2Rem($props){
   @each $name,$value in $props {
     @if (type-of($value)=='string'){
       #{$name}:unquote($value);
@@ -30,14 +29,17 @@ $base:750/100;
     }
   }
 }
-@svg px1border{
-	height: 1px;
-	@rect { 
-		fill:var(--color, black);
-		width: 100%; 
-		height: 100%;
-	}
-}
 
 
-$base-color:#fff;
+// #one{
+//   @include px2Rem((
+//         width:16px,
+//         height:20px,
+//         color:#fff,
+//         word-break:'break-all',
+//         border:solid 1px #ededed,
+//         margin:13px 16 14px 18px,
+//         line-height:20px
+         
+//   ));
+// }
