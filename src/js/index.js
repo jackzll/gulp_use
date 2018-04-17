@@ -69,4 +69,7 @@ function sort(array) {
 // function quickSort(){
 
 // }
+
+
+
 // console.log('sort', sort(sortD));

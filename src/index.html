@@ -15,12 +15,15 @@
         (function(win,doc){
                 var dpr=window.devicePixelRatio||1;
                 var scale=dpr>=2?0.5:1; 
-                document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+                doc.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
                 function setFontSize(){
+                    console.log('1111');
                     var size=(window.innerWidth||doc.documentElement.clientWidth)/750;
-                    doc.documentElement.style.fontSize=100*size+'px';
+                    doc.documentElement.style.fontSize=(20*size)/scale+'px';
                 }
-                window.addeventListener('resize',setFontSize)
+                setFontSize();
+                win.onresize=setFontSize;
+                // doc.addEventListener('resize',setFontSize,false);
         })(window,document)
        
     </script>
@@ -57,7 +60,7 @@
         <div class="right">rightrightrightrightright</div>
         <div class="center">center</div>
     </div>
-    <div class="id"></div>
+    <div class="id">111111111</div>
     <script src="./js/index.min.js"></script>
 </body>
 

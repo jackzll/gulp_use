@@ -1,6 +1,6 @@
 @import '_px2rem';
 $base:750/100;
-@function Mosaic($b) {
+@function MosaicVw($b) {
     $v:"";
     @each $va in $b{
       @if (type-of($va)=='number'){
@@ -26,7 +26,7 @@ $base:750/100;
       #{$name}:unquote($value);
     }
     @else{
-        #{$name}:Mosaic($value);
+        #{$name}:MosaicVw($value);
     }
   }
 }
