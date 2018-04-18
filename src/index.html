@@ -10,22 +10,19 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link href="" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="https://static.zhihu.com/static/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
     <script>
         (function(win,doc){
                 var dpr=window.devicePixelRatio||1;
                 var scale=dpr>=2?0.5:1; 
                 doc.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
                 function setFontSize(){
-                    console.log('1111');
                     var size=(window.innerWidth||doc.documentElement.clientWidth)/750;
-                    doc.documentElement.style.fontSize=(20*size)/scale+'px';
+                    doc.documentElement.style.fontSize=(20*size)*(Math.min(dpr,2)/2)+'px';
                 }
                 setFontSize();
                 win.onresize=setFontSize;
-                // doc.addEventListener('resize',setFontSize,false);
         })(window,document)
-       
     </script>
     <link href="./css/common.min.css" type="text/css" rel="stylesheet">
 </head>

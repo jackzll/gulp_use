@@ -1,0 +1,31 @@
+$base:750/100;
+@function MosaicVw($b) {
+    $v:"";
+    @each $va in $b{
+      @if (type-of($va)=='number'){
+                  @if unit($va)=='px'{
+                    $v:$v+" "+unquote(($va/1px)/$base+'vw');
+                  }
+                  @else if(unitless($va)){
+                    $v:$v+" "+unquote(($va/$base)+'vw');
+                  }
+                  @else if(unit($va)=='em'){
+                      $v:$v+" "+$va;
+                  }
+      }@else{
+        $v:$v+" "+$va
+      }
+    };
+    @return unquote($v);
+}
+
+@mixin px2vw($props){
+  @each $name,$value in $props {
+    @if (type-of($value)=='string'){
+      #{$name}:unquote($value);
+    }
+    @else{
+        #{$name}:MosaicVw($value);
+    }
+  }
+}
