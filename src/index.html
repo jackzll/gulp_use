@@ -15,13 +15,15 @@
         (function(win,doc){
                 var dpr=window.devicePixelRatio||1;
                 var scale=dpr>=2?0.5:1; 
-                doc.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+                var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+                doc.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
                 function setFontSize(){
                     var size=(window.innerWidth||doc.documentElement.clientWidth)/750;
                     doc.documentElement.style.fontSize=(20*size)*(Math.min(dpr,2)/2)+'px';
                 }
                 setFontSize();
-                win.onresize=setFontSize;
+                doc.addEventListener('DOMContentLoaded', setFontSize, false);
+                win.addEventListener(resizeEvt,setFontSize,false);
         })(window,document)
     </script>
     <link href="./css/common.min.css" type="text/css" rel="stylesheet">
@@ -29,7 +31,7 @@
 
 <body>
     <div id="root">hello word</div>
-    <ul class="flex">
+ <!--    <ul class="flex">
         <li>1</li>
         <li>2</li>
         <li>3</li>
@@ -45,9 +47,9 @@
         <li></li>
         <li></li>
         <li></li>
-    </ul>
-    <div class="border"></div>
-    <div class="float">
+    </ul> -->
+    <!-- <div class="border"></div> -->
+   <!--  <div class="float">
         <div>box1</div>
         <p>aaa</p>
         <div>box2</div>
@@ -57,7 +59,8 @@
         <div class="right">rightrightrightrightright</div>
         <div class="center">center</div>
     </div>
-    <div class="id">111111111</div>
+    <div class="id">111111111</div> -->
+    <div class="test-rem">服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务描述文案服务</div>
     <script src="./js/index.min.js"></script>
 </body>
 
